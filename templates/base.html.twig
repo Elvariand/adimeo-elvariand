@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+	<head>
+
+		{% block meta %}
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			{% block SEO %}{% endblock %}
+		{% endblock %}
+
+		<title>
+			{% block title %}ADIMEO - APOD
+			{% endblock %}
+		</title>
+
+		{% block importmap %}
+			{{ importmap('app') }}
+		{% endblock %}
+
+		{% block stylesheets %}
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+			<link rel="stylesheet" href="{{asset('assets/css/apod.css') }}">
+			<link rel="icon" href="{{asset('assets/img/icons/favicon.png') }}">
+		{% endblock %}
+
+		{% block javascripts %}
+			<script src="https://apis.google.com/js/platform.js" async defer></script>
+			<script src="https://accounts.google.com/gsi/client" async></script>
+		{% endblock %}
+
+		{% block othersheets %}{% endblock %}
+	</head>
+	<body>
+		{% block header %}
+			{% include 'layout/header.html.twig' %}
+		{% endblock %}
+		{% block body %}{% endblock %}
+		{% block footer %}
+			{% include 'layout/footer.html.twig' %}
+		{% endblock %}
+	</body>
+</html>

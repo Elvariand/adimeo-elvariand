@@ -1,0 +1,50 @@
+version: '3.3'
+
+services:
+  www:
+    build: ./
+    depends_on:
+      - db
+    container_name: symfony_apod
+    restart: always
+    ports:
+      - '8000:8000'
+    dns:
+      - 8.8.8.8
+    volumes:
+      - ./:/var/www/
+    command: "symfony server:start"
+    networks:
+      - rr-net
+
+  db:
+    image: mysql:latest
+    container_name: adimeo_apod_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: adimeoAPOD
+      MYSQL_USER: elvariand
+      MYSQL_PASSWORD: amazingCandidate1993
+    ports:
+      - '4306:3306'
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - rr-net
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 9000:80
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - rr-net
+
+networks:
+  rr-net:
+    driver: bridge
+
+volumes:
+  db-data:

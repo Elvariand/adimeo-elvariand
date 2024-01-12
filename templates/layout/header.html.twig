@@ -1,0 +1,55 @@
+<div class="box-wrapper shadow border-bottom border-primary">
+	<div class="box-container limit-width">
+		<div class="menu-wrapper menu-shrink menu-sticky menu-no-arrows justify-content-evenly">
+			<header id="masthead" class="col-12 navbar menu-absolute menu-add-padding justify-content-between">
+			{# Pas besoin de navbar latérale / sidebar si le reste des photos ne sont pas chargées #}
+				{% if allPics is defined %}
+				<span role="button" class="offset-1"><ion-icon name="planet-outline" size="large" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" id="sidebar-trigger"></ion-icon></span>
+				<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel" width="100px">
+					<div class="offcanvas-header">
+						<h3 class="offcanvas-title" id="offcanvasLabel">
+							See previous APOD
+						</h3>
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					<div class="offcanvas-body">
+						<ul class="nav nav-pills flex-column mb-auto">
+							{% for pic in allPics %}
+								<li class="nav-item">
+									<a id="link-{{date}}" href="{{ path( 'old_apod', {'date': pic.date}) }}" class="{% if pic.date == date %}active{% endif %} link-underline-success" aria-current="page">{{pic.date}}</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+				{% else %}
+					<div class="col-1"></div>
+				{% endif %}
+				{# fin de sidebar #}
+				<h2> ADIMEO'S APOD </h2>
+				<div class="menu-container menu-dd-shadow nav navbar-nav navbar-main navbar-nav-last md-5" style="height: auto;">
+					<ul id="menu-main-menu-fr" class="menu-primary-inner menu-smart sm mb-0">
+						{# Switch light dark #}
+						<li id="menu-item-103867" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103867 menu-item-link list-inline-item mx-2">
+							<div class="form-check form-switch pt-3">
+								<input class="form-check-input checked" type="checkbox" id="themeSwitch" name="darkmode" value="theme-dark">
+								<label class="form-check-label" for="themeSwitch"><img src="{{ asset('assets/img/icons/PictoSun_Black.png') }}" id="black-sun"></label>
+								<label class="form-check-label" for="themeSwitch"><img src="{{ asset('assets/img/icons/PictoSun_White.png') }}" id="white-sun"></label>
+							</div>
+						</li>
+						{# Fin switch #}
+						{# log out #}
+						{% if identified is not empty %}
+							<li id="menu-item-103866" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103867 menu-item-link list-inline-item mx-2 align-items-center">
+								<a id="btn-logout" class="nav-link" title="Logout" href="{{ path('app_logout') }}">
+									<img src="{{ asset('assets/img/icons/logout_icon.png') }}">
+								</a>
+							</li>
+						{% endif %}
+						{# fin log out #}
+					</ul>
+				</div>
+			</header>
+		</div>
+	</div>
+</div>

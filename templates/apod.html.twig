@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1 class="text-center mt-3">Astronomy Picture Of the Day</h1>
+	<main class="row d-flex flex-column justify-content-center mx-auto">
+	<h2 class="text-center">
+		<u>{{title}}</u>
+	</h2>
+	<div class="img-magnifier-container">
+		<a class="d-flex mx-auto" href="/assets/img/apod/hd/hd_apod_{{date}}.png" target="_blank">
+			<img class="magniflier mx-auto" id="apod" src='/assets/img/apod/sd/apod_{{date}}.png' />
+		</a>
+	</div>
+	<label class="text-center">
+		<small>copyright :
+			{{copyright}}</small>
+	</label>
+	<label class="text-center">Picture of the day :
+		{{date}}</label>
+    {# fenetre d'erreur #}
+	<div id="boxBack" class="text-center position-fixed">
+		<div id="boxWrap" class="border border-2 border-danger p-4" style="border-radius: 20px;">
+			<div id="boxTxt" class=""></div>
+			<div class="justify-content-between">
+				<input type="button" class="btn btn-default border border-dark mt-4" value="OK" id="errorBtn"/>
+				<input type="button" class="btn btn-default border border-dark mt-4 d-none" value="Cancel" id="cancelBtn"/>
+			</div>
+		</div>
+	</div>
+    {# fin fenetre d'erreur #}
+</main>
+{% endblock %}
